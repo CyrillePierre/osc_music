@@ -1,6 +1,11 @@
 #include <lv2.h>
+#include <stdlib.h>
 
 char const URI[] = "ese-mushroom";
+
+typedef enum {
+	PORT_OUTPUT = 0
+} PortIndex;
 
 /**
    Every plugin defines a private structure for the plugin instance.  All data
@@ -25,7 +30,7 @@ typedef struct {
 static LV2_Handle instantiate(
 	const LV2_Descriptor *      descriptor,
 	double                      rate,
-	char cont *                 bundle_path,
+	char const *                bundle_path,
 	LV2_Feature const * const * features)
 {
   return (LV2_Handle)calloc(1, sizeof(PluginHandle));
@@ -43,7 +48,7 @@ static void connect_port(LV2_Handle instance, uint32_t port, void* data) {
   PluginHandle * handle = (PluginHandle *)instance;
 
   switch((PortIndex)port) {
-  case AMP_OUTPUT:
+  case PORT_OUTPUT:
     handle->output = (float *)data;
     break;
   }
@@ -75,8 +80,8 @@ run(LV2_Handle instance, uint32_t n_samples)
 {
   PluginHandle const * handle = (const PluginHandle*)instance;
 
-  for(uint32_t pos = 0; pos < n_shandleles; pos++) {
-    output[pos] = 0;
+  for(uint32_t pos = 0; pos < n_samples; pos++) {
+    handle->output[pos] = 0;
   }
 }
 

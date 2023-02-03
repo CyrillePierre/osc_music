@@ -1,7 +1,12 @@
+cc = meson.get_compiler('c')
+
 sources = files(
   'src/lv2_interface.c'
 )
 
-lv2_dep = dependency('lv2')
+deps = [
+  dependency('lv2', required: true),
+  cc.find_library('m', required: true),
+]
 
-library('mushroom', sources, dependencies: lv2_dep)
+shared_library('mushroom', sources, dependencies: deps)

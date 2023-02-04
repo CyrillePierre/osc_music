@@ -1,7 +1,8 @@
 @prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ese:  <http://eseris.fr/lv2/> .
 
-<http://eseris.fr/lv2/mushroom>
+ese:mushroom
 	a lv2:Plugin ;
-	lv2:binary <mushroom.so> ;
+	lv2:binary <libmushroom.so> ;
 	rdfs:seeAlso <mushroom.ttl> .

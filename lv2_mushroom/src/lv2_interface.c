@@ -2,21 +2,21 @@
 #include <math.h>
 #include <stdlib.h>
 
-char const URI[] = "ese-mushroom";
+char const URI[] = "http://eseris.fr/lv2/mushroom";
 
 typedef enum { PORT_OUTPUT = 0 } PortIndex;
 
 typedef struct {
-	float* output;
+	float*   output;
 	uint32_t time_offset;
-	float offset_to_angle;
+	float    offset_to_angle;
 } PluginHandle;
 
 /** Called by the host to create a new plugin instance. */
 static LV2_Handle instantiate(
-    const LV2_Descriptor* descriptor,
-    double rate,
-    char const* bundle_path,
+    const LV2_Descriptor*     descriptor,
+    double                    rate,
+    char const*               bundle_path,
     LV2_Feature const* const* features)
 {
 	PluginHandle* handle = calloc(1, sizeof(PluginHandle));
@@ -51,11 +51,11 @@ static void activate(LV2_Handle instance)
 static void run(LV2_Handle instance, uint32_t n_samples)
 {
 	PluginHandle* handle = instance;
-	float const freq     = 440;
+	float const   freq   = 440;
 
 	for(uint32_t pos = 0; pos < n_samples; pos++) {
 		handle->output[pos] = sinf(freq * handle->time_offset * handle->offset_to_angle);
-		++(handle->time_offset);
+		handle->time_offset++;
 	}
 }
 
@@ -75,7 +75,7 @@ static const void* extension_data(const char* uri)
 }
 
 // clang-format off
-static const LV2_Descriptor descriptor = { 
+static const LV2_Descriptor descriptor = {
 	URI,
 	instantiate,
 	connect_port,

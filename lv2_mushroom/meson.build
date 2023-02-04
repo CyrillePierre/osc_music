@@ -1,6 +1,6 @@
 plugin_name = 'mushroom'
 sources = files('src/lv2_interface.c')
-data_files = [ 'manifest.ttl', 'mushroom.ttl' ]
+data_files = ['manifest.ttl', 'mushroom.ttl']
 
 deps = [
   dependency('lv2', required: true),

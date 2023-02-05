@@ -9,4 +9,5 @@ typedef struct {
 	float*   out_right;
 	uint32_t time_offset;
 	float    offset_to_angle;
+	double   rate;
 } PluginHandle;

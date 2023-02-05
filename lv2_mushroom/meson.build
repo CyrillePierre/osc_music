@@ -1,5 +1,5 @@
 plugin_name = 'mushroom'
-sources = files('src/lv2_interface.c')
+sources = files('src/lv2_interface.c', 'src/mushroom.c')
 data_files = ['manifest.ttl', 'mushroom.ttl']
 
 deps = [

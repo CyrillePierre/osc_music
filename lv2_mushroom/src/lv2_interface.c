@@ -1,16 +1,11 @@
+#include "mushroom.h"
+#include "plugin_handle.h"
+
 #include <lv2.h>
 #include <math.h>
 #include <stdlib.h>
 
 char const URI[] = "http://eseris.fr/lv2/mushroom";
-
-typedef enum { PORT_OUTPUT = 0 } PortIndex;
-
-typedef struct {
-	float*   output;
-	uint32_t time_offset;
-	float    offset_to_angle;
-} PluginHandle;
 
 /** Called by the host to create a new plugin instance. */
 static LV2_Handle instantiate(
@@ -46,18 +41,6 @@ static void activate(LV2_Handle instance)
 
 /** Define a macro for converting a gain in dB to a coefficient. */
 #define FROM_DB(g) ((g) > -90.0f ? powf(10.0f, (g) *0.05f) : 0.0f)
-
-/** Main process function of the plugin. */
-static void run(LV2_Handle instance, uint32_t n_samples)
-{
-	PluginHandle* handle = instance;
-	float const   freq   = 440;
-
-	for(uint32_t pos = 0; pos < n_samples; pos++) {
-		handle->output[pos] = sinf(freq * handle->time_offset * handle->offset_to_angle);
-		handle->time_offset++;
-	}
-}
 
 /** Called by the host after running the plugin. */
 static void deactivate(LV2_Handle instance) {}

@@ -32,16 +32,15 @@ static float enable(float pos, float phase, float width)
 void run(LV2_Handle instance, uint32_t n_samples)
 {
 	PluginHandle* handle = instance;
-	float const   freq   = 120;
 
 	for(uint32_t i = 0; i < n_samples; i++) {
-		float pos   = freq * handle->time_offset / handle->rate;
-		float pos2  = 100.01 * pos;
+		float pos   = 130 * handle->time_offset / handle->rate;
+		float pos2  = 10000 * handle->time_offset / handle->rate;
 		float shape = .6 * sine(pos, 0) * enable(pos, .25, .25)
 		              + .05 * enable(pos, 0, .75);
 		float left  = .2 * sine(pos2, 0) * shape;
 		float right = .05 * sine(pos2, .25) * shape + .3 * sawtooth(pos, 0);
-		left += .25 * (.5 * sawtooth(pos, 0) + .5) * sine(pos * .99 / 3, .25);
+		left += .25 * (.5 * sawtooth(pos, 0) + .5) * sine(pos * .995 / 3, .25);
 
 		handle->out_left[i]  = left;
 		handle->out_right[i] = right;

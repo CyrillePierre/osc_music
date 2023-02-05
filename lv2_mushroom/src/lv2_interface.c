@@ -2,7 +2,6 @@
 #include "plugin_handle.h"
 
 #include <lv2.h>
-#include <math.h>
 #include <stdlib.h>
 
 char const URI[] = "http://eseris.fr/lv2/mushroom";
@@ -16,7 +15,6 @@ static LV2_Handle instantiate(
 {
 	PluginHandle* handle = calloc(1, sizeof(PluginHandle));
 
-	handle->offset_to_angle = 2 * M_PI / rate;
 	handle->rate            = rate;
 	return handle;
 }

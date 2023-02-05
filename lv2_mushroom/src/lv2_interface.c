@@ -26,7 +26,8 @@ static void connect_port(LV2_Handle instance, uint32_t port, void* data)
 	PluginHandle* handle = instance;
 
 	switch((PortIndex) port) {
-	case PORT_OUTPUT: handle->output = (float*) data; break;
+	case PORT_OUT_LEFT: handle->out_left = (float*) data; break;
+	case PORT_OUT_RIGHT: handle->out_right = (float*) data; break;
 	}
 }
 

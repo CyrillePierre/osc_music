@@ -2,10 +2,11 @@
 
 #include <stdint.h>
 
-typedef enum { PORT_OUTPUT = 0 } PortIndex;
+typedef enum { PORT_OUT_LEFT = 0, PORT_OUT_RIGHT = 1 } PortIndex;
 
 typedef struct {
-	float*   output;
+	float*   out_left;
+	float*   out_right;
 	uint32_t time_offset;
 	float    offset_to_angle;
 } PluginHandle;

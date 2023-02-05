@@ -1,6 +1,6 @@
 #!/bin/bash
 jalv -i http://eseris.fr/lv2/mushroom &
 sleep 0.1
-jack_connect 'Ese - Champignon:out' system:playback_1
-jack_connect 'Ese - Champignon:out' system:playback_2
+jack_connect 'Ese Champignon:out' 'PulseAudio JACK Source:front-left'
+jack_connect 'Ese Champignon:out' 'PulseAudio JACK Source:front-right'
 wait

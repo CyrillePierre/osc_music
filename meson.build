@@ -1,7 +1,7 @@
-project('osc_music', 'c')
+project('osc_music', ['cpp'])
 
 lv2_dir = '$HOME/.lv2'
 
-cc = meson.get_compiler('c')
+cpp = meson.get_compiler('cpp')
 
 subdir('lv2_mushroom')

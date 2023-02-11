@@ -1,10 +1,13 @@
 plugin_name = 'mushroom'
-sources = files('src/lv2_interface.c', 'src/mushroom.c')
 data_files = ['manifest.ttl', 'mushroom.ttl']
+sources = files(
+  'src/lv2_interface.cpp',
+  'src/plugin_handle.cpp'
+)
 
 deps = [
   dependency('lv2', required: true),
-  cc.find_library('m', required: true),
+  cpp.find_library('m', required: true),
 ]
 
 shared_library(

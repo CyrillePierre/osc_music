@@ -1,4 +1,5 @@
 ﻿---
+AccessModifierOffset: -2
 AlignAfterOpenBracket: AlwaysBreak
 AlignConsecutiveMacros: true
 AlignConsecutiveAssignments: true
@@ -14,7 +15,7 @@ AllowShortIfStatementsOnASingleLine: WithoutElse
 AllowShortLambdasOnASingleLine: All
 AllowShortLoopsOnASingleLine: true
 AlwaysBreakAfterReturnType: None
-AlwaysBreakTemplateDeclarations: 'Yes'
+AlwaysBreakTemplateDeclarations: Yes
 BinPackArguments: false
 BinPackParameters: false
 BreakBeforeBinaryOperators: NonAssignment
@@ -23,21 +24,24 @@ BreakBeforeTernaryOperators: true
 BreakConstructorInitializers: AfterColon
 BreakInheritanceList: AfterColon
 BreakStringLiterals: true
-ColumnLimit: '100'
+ColumnLimit: 100
 CompactNamespaces: false
 ConstructorInitializerAllOnOneLineOrOnePerLine: true
+ConstructorInitializerIndentWidth: 4
+ContinuationIndentWidth: 2
 Cpp11BracedListStyle: false
 DerivePointerAlignment: false
 FixNamespaceComments: true
 IncludeBlocks: Regroup
 IndentCaseLabels: false
 IndentPPDirectives: AfterHash
-IndentWidth: '4'
+IndentWidth: 2
 IndentWrappedFunctionNames: false
 KeepEmptyLinesAtTheStartOfBlocks: false
-MaxEmptyLinesToKeep: '1'
+MaxEmptyLinesToKeep: 1
 NamespaceIndentation: None
 PointerAlignment: Left
+QualifierAlignment: Right
 ReflowComments: true
 SortIncludes: true
 SpaceAfterCStyleCast: true
@@ -51,13 +55,13 @@ SpaceBeforeInheritanceColon: false
 SpaceBeforeParens: Never
 SpaceBeforeRangeBasedForLoopColon: true
 SpaceInEmptyParentheses: false
-SpacesBeforeTrailingComments: '2'
+SpacesBeforeTrailingComments: 2
 SpacesInAngles: false
 SpacesInCStyleCastParentheses: false
 SpacesInContainerLiterals: false
 SpacesInParentheses: false
 SpacesInSquareBrackets: false
 Standard: Cpp11
-TabWidth: '4'
-UseTab: ForIndentation
+TabWidth: 2
+UseTab: Never
 ...

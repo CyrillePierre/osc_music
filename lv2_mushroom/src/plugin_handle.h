@@ -1,7 +1,9 @@
 #pragma once
 
-#include <lv2.h>
+#include "counter.h"
+
 #include <cstdint>
+#include <lv2.h>
 
 class PluginHandle {
 public:
@@ -10,15 +12,18 @@ public:
 private:
   float*   _outLeft;
   float*   _outRight;
-  uint32_t _timeOffset;
   double   _rate;
+
+  Counter _lowPos;
+  Counter _highPos;
+  Counter _turnPos;
 
 public:
   PluginHandle(
-      LV2_Descriptor const*     descriptor,
-      double                    rate,
-      char const*               bundle_path,
-      LV2_Feature const* const* features);
+    LV2_Descriptor const*     descriptor,
+    double                    rate,
+    char const*               bundle_path,
+    LV2_Feature const* const* features);
 
   void connectPort(PortIndex port, void* data);
   void activate();

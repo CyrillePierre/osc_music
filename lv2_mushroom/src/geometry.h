@@ -2,6 +2,8 @@
 
 #include <cmath>
 
+namespace geometry {
+
 inline void rotate(float& x, float& y, float angle)
 {
   float ca = std::cos(angle);
@@ -12,3 +14,5 @@ inline void rotate(float& x, float& y, float angle)
   x = rx;
   y = ry;
 }
+
+}  // namespace geometry

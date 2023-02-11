@@ -8,7 +8,7 @@ PluginHandle::PluginHandle(
   double                    rate,
   char const*               bundle_path,
   LV2_Feature const* const* features):
-    _rate(rate)
+    _rate(rate), _lowPos(130 / rate), _highPos(16000 / rate), _turnPos(130 / rate * .995 / 3)
 {
 }
 
@@ -20,10 +20,7 @@ void PluginHandle::connectPort(PortIndex port, void* data)
   }
 }
 
-void PluginHandle::activate()
-{
-  _timeOffset = 0;
-}
+void PluginHandle::activate() {}
 
 void PluginHandle::deactivate() {}
 
@@ -32,17 +29,17 @@ void PluginHandle::run(uint32_t nbSamples)
   using namespace waveform;
 
   for(uint32_t i = 0; i < nbSamples; i++) {
-    float pos   = 130 * _timeOffset / _rate;
-    float pos2  = 10000 * _timeOffset / _rate;
-    float shape = .6 * sine(pos) * enable(pos + .25, .25) + .05 * enable(pos, .75);
-    float left  = .2 * sine(pos2) * shape;
-    float right = .05 * sine(pos2 + .25) * shape + .3 * sawtooth(pos);
-    left += .25 * (.5 * sawtooth(pos) + .5) * sine(pos * .995 / 3 + .25);
+    float shape = .6 * sine(_lowPos) * enable(_lowPos + .25, .25) + .05 * enable(_lowPos, .75);
+    float left  = .2 * sine(_highPos) * shape;
+    float right = .05 * sine(_highPos + .25) * shape + .3 * sawtooth(_lowPos);
+    left += .25 * (.5 * sawtooth(_lowPos) + .5) * sine(_turnPos);
 
     // rotate(left, right, _timeOffset / _rate);
 
     _outLeft[i]  = left;
     _outRight[i] = right;
-    _timeOffset++;
+    _lowPos.update();
+    _highPos.update();
+    _turnPos.update();
   }
 }

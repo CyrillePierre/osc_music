@@ -2,6 +2,8 @@
 
 #include <cmath>
 
+namespace waveform {
+
 inline float sine(float pos)
 {
   return std::sin(std::fmod(pos, 1) * 2 * M_PI);
@@ -26,3 +28,5 @@ inline float enable(float pos, float width)
 {
   return std::fmod(pos, 1) < width;
 }
+
+}  // namespace waveform

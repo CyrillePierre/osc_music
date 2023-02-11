@@ -1,5 +1,6 @@
 #include "plugin_handle.h"
 
+#include "geometry.h"
 #include "waveform.h"
 
 PluginHandle::PluginHandle(
@@ -28,6 +29,8 @@ void PluginHandle::deactivate() {}
 
 void PluginHandle::run(uint32_t nbSamples)
 {
+  using namespace waveform;
+
   for(uint32_t i = 0; i < nbSamples; i++) {
     float pos   = 130 * _timeOffset / _rate;
     float pos2  = 10000 * _timeOffset / _rate;
@@ -35,6 +38,8 @@ void PluginHandle::run(uint32_t nbSamples)
     float left  = .2 * sine(pos2) * shape;
     float right = .05 * sine(pos2 + .25) * shape + .3 * sawtooth(pos);
     left += .25 * (.5 * sawtooth(pos) + .5) * sine(pos * .995 / 3 + .25);
+
+    // rotate(left, right, _timeOffset / _rate);
 
     _outLeft[i]  = left;
     _outRight[i] = right;

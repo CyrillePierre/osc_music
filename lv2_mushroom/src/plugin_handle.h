@@ -13,6 +13,7 @@ private:
   float*   _outLeft;
   float*   _outRight;
   double   _rate;
+  float    _time{};
 
   Counter _lowPos;
   Counter _highPos;

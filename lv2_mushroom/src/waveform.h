@@ -21,7 +21,7 @@ inline float sawtooth(float pos)
 
 inline float triangle(float pos)
 {
-  return 4 * std::abs(std::fmod(pos - .25, 1) - .5) - 1;
+  return 4 * std::abs(std::fmod(pos + .75, 1) - .5) - 1;
 }
 
 inline float enable(float pos, float width)
